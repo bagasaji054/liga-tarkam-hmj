@@ -1,32 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login Admin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin Liga Tarkam HMJ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #101010;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+        .login-box {
+            background: #1f1f1f;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            border: 2px solid gold;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: gold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid gold;
+            border-radius: 5px;
+            background: black;
+            color: white;
+            text-align: center;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: gold;
+            color: black;
+            font-size: 16px;
+            margin-top: 12px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #c9a400;
+        }
+        .error {
+            margin-top: 10px;
+            color: red;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Login Admin</h2>
 
-    <input type="password" id="password" placeholder="Masukan Password">
+<div class="login-box">
+    <h2>ADMIN LOGIN</h2>
+    
+    <input id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
     <button onclick="login()">Login</button>
 
-    <p id="msg"></p>
+    <div class="error" id="error-message"></div>
+</div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbyo0ymuAsz5gpbhrExLB-cKl725KqTyS7njY8rFXp1_32tSEDbJujhEwnXRNu_CuO0q/exec";
+function login() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
 
-function login(){
-    const password = document.getElementById("password").value;
+    const validUser = "HMJ054";
+    const validPass = "054";
 
-    fetch(API_URL + "?mode=login&password=" + password)
-    .then(res => res.text())
-    .then(data => {
-        if(data === "success"){
-            localStorage.setItem("login", "true");
-            window.location.href = "admin.html";
-        } else {
-            document.getElementById("msg").innerText = "Password salah!";
-        }
-    });
+    if (user === validUser && pass === validPass) {
+        localStorage.setItem("adminLogin", "true");
+        window.location.href = "admin.html";
+    } else {
+        document.getElementById("error-message").textContent = "❌ Username atau Password salah!";
+    }
+}
+
+// Jika admin sudah login, redirect otomatis
+if (localStorage.getItem("adminLogin")) {
+    window.location.href = "admin.html";
 }
 </script>
 
