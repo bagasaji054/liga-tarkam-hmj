@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Admin</title>
+</head>
+<body>
+    <h2>Login Admin</h2>
+
+    <input type="password" id="password" placeholder="Masukan Password">
+    <button onclick="login()">Login</button>
+
+    <p id="msg"></p>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbyo0ymuAsz5gpbhrExLB-cKl725KqTyS7njY8rFXp1_32tSEDbJujhEwnXRNu_CuO0q/exec";
+
+function login(){
+    const password = document.getElementById("password").value;
+
+    fetch(API_URL + "?mode=login&password=" + password)
+    .then(res => res.text())
+    .then(data => {
+        if(data === "success"){
+            localStorage.setItem("login", "true");
+            window.location.href = "admin.html";
+        } else {
+            document.getElementById("msg").innerText = "Password salah!";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
