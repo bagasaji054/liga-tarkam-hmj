@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Website Saya</title>
+</head>
+<body>
+    <h2>Konten</h2>
+    <div id="output">Loading...</div>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbyo0ymuAsz5gpbhrExLB-cKl725KqTyS7njY8rFXp1_32tSEDbJujhEwnXRNu_CuO0q/exec";
+
+fetch(API_URL + "?mode=get")
+.then(res => res.text())
+.then(data => {
+    document.getElementById("output").innerHTML = data;
+});
+</script>
+
+</body>
+</html>
